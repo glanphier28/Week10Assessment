@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert New Book</title>
+<style>
+  p {
+    font-family: Arial;
+  }
+</style>
+</head>
+<body>
+<h1>Add/Edit Book</h1>
+  <form th:object="${newBook}" th:action="@{/update/{id}(id=${newBook.id})}" method=POST>
+  
+  <p>Title:</p> <input name="title" size="20" th:field="*{title}"> <br />
+  <p>Author:</p> <input name="author" size="10" th:field="*{author}"><br />
+  <p>Genre:</p> <input name="genre" size="20" th:field="*{genre}"><br />
+  <p>Page Count:</p> <input name="pageCount" size="20" th:field="*{pageCount}"><br />
+
+  
+  <input name="submit" type="submit" value="submit" />
+  </form>
+  <a href="../viewAll">View all Books</a>
+
+</body>
+</html>
