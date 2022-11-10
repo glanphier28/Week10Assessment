@@ -8,18 +8,66 @@
     font-family: Arial;
   }
 </style>
+<script>
+function verifyTitleInput () {
+	if (document.getElementById("titleInput").value === "") {
+		alert("please input a title");
+		return false;
+	} else {
+		return true;
+	}
+	
+	}
+	
+	function verifyAuthorInput() {
+		if (document.getElementById("authorInput").value === "") {
+			alert("please input an author");
+			return false;
+		} else {
+			return true;
+		}
+	}
+	function verifyGenreInput() {
+		if (document.getElementById("genreInput").value === "") {
+			alert("please input a genre");
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	function verifyPageInput() {
+		if (document.getElementById("pageInput").value === "") {
+			alert("please input a page count");
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	function verifyAll() {
+		let returnBoolean = false;
+		if(verifyTitleInput() == true && verifyAuthorInput() == true && verifyGenreInput() == true && verifyPageInput() == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+</script>
 </head>
 <body>
 <h1>Add/Edit Book</h1>
-  <form th:object="${newBook}" th:action="@{/update/{id}(id=${newBook.id})}" method=POST>
+  <form id="form" th:object="${newBook}" th:action="@{/update/{id}(id=${newBook.id})}" method=POST onsubmit="return verifyAll()">
   
-  <p>Title:</p> <input name="title" size="20" th:field="*{title}"> <br />
-  <p>Author:</p> <input name="author" size="10" th:field="*{author}"><br />
-  <p>Genre:</p> <input name="genre" size="20" th:field="*{genre}"><br />
-  <p>Page Count:</p> <input name="pageCount" size="20" th:field="*{pageCount}"><br />
+  <p>Title:</p> <input name="title" id="titleInput" size="20" th:field="*{title}"> <br />
+  <p>Author:</p> <input name="author" id="authorInput" size="10" th:field="*{author}"><br />
+  <p>Genre:</p> <input name="genre" id="genreInput" size="20" th:field="*{genre}"><br />
+  <p>Page Count:</p> <input name="pageCount" id="pageInput" size="20" th:field="*{pageCount}"><br />
+  
+  
 
-  
-  <input name="submit" type="submit" value="submit" />
+  <input name="submit" id="formSubmit" type="submit" value="submit" />
   </form>
   <a href="../viewAll">View all Books</a>
 
